@@ -1,3 +1,14 @@
+Codificador com Prioridade:
+
 Y0 = F1.F2'.F3' + F3
 Y1 = F2 + F3
+FS = F1 + F2 + F3
+--------------------------
 
+Gerador de Função:
+OK = (C1' . FC0 . FC1') + (C0 . C1' . FC0) + (C0' . C1 . FC0) + (C0' . FC0' . FC1) + (C1 . FC0' . FC1)
+--------------------------
+
+Validador:
+V = 
+--------------------------
