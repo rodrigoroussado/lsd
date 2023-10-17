@@ -1,0 +1,88 @@
+Name     Trabalho2 ; 
+PartNo   U1 ; 
+Date     5/10/2023 ;
+Revision 01 ;
+Designer Grupo 1 ;
+Company  ISEL ;
+Assembly None ; 
+Location None ;
+Device   v750c ;
+
+/*************************************************************
+ * ATENCAO: APENAS DEVE COMPLETAR AS EXPRESSOES EM FALTA.    *
+ *          NAO DEVEM SER ALTERADOS AS DEFINICOES DOS PINOS. *
+ *************************************************************/ 
+
+/* Inputs pins */
+pin [1..4] = [A0..3];
+pin [5..8] = [B0..3];
+pin 9 = CYBWI; 
+pin 10 = OP0;
+pin 11 = OP1;
+pin 13 = OP2;
+
+/* Outputs pins */
+pin [17..20] = [R0..3];
+pin 21 = V;
+pin 22 = CYBWO;
+pin 23 = LE;
+
+/* Auxiliary pins */
+pin [14..16] = [C1..3];
+
+/*---------------------------*/
+/*      Arithmetic Unit      */
+/*---------------------------*/
+
+/* B and CYBWI transform */
+[BT0..3] = [B0..3] $ OP0;
+C0 = S1 # (OP0 $ CYBWI);
+
+/* C1 to C4 */
+[C1..4] = [A0..3]&[B0..3] # [A0..3]&[C0..3] # [B0..3]&[C0..3];
+
+/* Result */
+[RA0..3] = [A0..3] $ [B0..3] $ C0  ;
+CYBWA = C4 $ OP0;
+
+/*------------------------- */
+/*    Logic/Shift Unit      */
+/*    Logical shift left    */
+/*------------------------- */
+
+/*************************************************************
+ * SO REMOVER ESTE COMENTARIO NO SEGUNDA AULA
+ * DE LABORATORIO DEDICADA AO 2. TRABALHO.
+ ************************************************************
+LSL0 = ;
+LSL1 = ;
+LSL2 = ;
+LSL3 = ;
+LSL4 = ;
+*************************************************************/ 
+
+/* AND operator */
+/************************************************************
+ * SO REMOVER ESTE COMENTARIO NO SEGUNDA AULA
+ * DE LABORATORIO DEDICADA AO 2. TRABALHO.
+ *************************************************************
+[AND0..3] = ; 
+**************************************************************/ 
+
+/* Logic result */
+/*************************************************************
+ * SO REMOVER ESTE COMENTARIO NO SEGUNDA AULA
+ * DE LABORATORIO DEDICADA AO 2. TRABALHO.
+ ************************************************************
+[RLOGIC0..3] = ; 
+**************************************************************/ 
+
+
+/* Final result and flags */
+[R0..3] =; 
+CYBWO = ;
+V = ;
+/* Zero flag */
+Z = ;
+LE = ;
+
