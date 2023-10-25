@@ -49,40 +49,27 @@ CYBWA = C4 $ OP0;
 /*    Logic/Shift Unit      */
 /*    Logical shift left    */
 /*------------------------- */
+LSL0 = A0 & !B0 & !B1;
+LSL1 = (A1 & !B0 & !B1) # (A0 & B0 & !B1);
+LSL2 = (A2 & !B0 & !B1) # (A1 & B0 & !B1) # (A0 & !B0 & B1);
+LSL3 = (A3 & !B0 & !B1) # (A2 & B0 & !B1) # (A1 & !B0 & B1) # (A0 & B0 & B1);
+LSL4 = (A3 & B0 & !B1) # (A2 & !B0 & B1) # (A1 & B0 & B1);
 
-/*************************************************************
- * SO REMOVER ESTE COMENTARIO NO SEGUNDA AULA
- * DE LABORATORIO DEDICADA AO 2. TRABALHO.
- ************************************************************
-LSL0 = ;
-LSL1 = ;
-LSL2 = ;
-LSL3 = ;
-LSL4 = ;
-*************************************************************/ 
 
 /* AND operator */
-/************************************************************
- * SO REMOVER ESTE COMENTARIO NO SEGUNDA AULA
- * DE LABORATORIO DEDICADA AO 2. TRABALHO.
- *************************************************************
-[AND0..3] = ; 
-**************************************************************/ 
+[AND0..3] = [A0..3] & [B0..3]; 
+
 
 /* Logic result */
-/*************************************************************
- * SO REMOVER ESTE COMENTARIO NO SEGUNDA AULA
- * DE LABORATORIO DEDICADA AO 2. TRABALHO.
- ************************************************************
-[RLOGIC0..3] = ; 
-**************************************************************/ 
+[RLOGIC0..3] = ( [AND0..3] & !OP0 ) # ( [LSL0..3] & OP0 ); 
+
 
 
 /* Final result and flags */
-[R0..3] = [RA0..3]; 
-CYBWO = CYBWA;
-V = (!A3 & !BT3 & R3) # (A3 & BT3 & !R3);
+[R0..3] = ( [RA0..3] & !OP2) # ( [RLOGIC0..3] & OP2);
+CYBWO = (CYBWA & !OP0) # (LSL4 & OP0);
+V = (!A3 & !B3 & R3) # (A3 & B3 & !R3);
+
 /* Zero flag */
 Z = !(R3 # R2 # R1 # R0);
 LE = (R3 $ V) # Z;
-
