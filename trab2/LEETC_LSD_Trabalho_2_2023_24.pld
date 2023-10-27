@@ -67,7 +67,7 @@ LSL4 = (A3 & B0 & !B1) # (A2 & !B0 & B1) # (A1 & B0 & B1);
 
 /* Final result and flags */
 [R0..3] = ( [RA0..3] & !OP2) # ( [RLOGIC0..3] & OP2);
-CYBWO = (CYBWA & !OP0) # (LSL4 & OP0);
+CYBWO = (CYBWA & !OP2) # (LSL4 & OP2);
 V = (!A3 & !BT3 & R3) # (A3 & BT3 & !R3);
 
 /* Zero flag */
