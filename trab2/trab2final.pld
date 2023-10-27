@@ -1,0 +1,75 @@
+Name     Trabalho2 ; 
+PartNo   U1 ; 
+Date     5/10/2023 ;
+Revision 01 ;
+Designer Grupo 1 ;
+Company  ISEL ;
+Assembly None ; 
+Location None ;
+Device   v750c ;
+ 
+/*************************************************************
+ * ATENCAO: APENAS DEVE COMPLETAR AS EXPRESSOES EM FALTA.    *
+ *          NAO DEVEM SER ALTERADOS AS DEFINICOES DOS PINOS. *
+ *************************************************************/ 
+
+/* Inputs pins */
+pin [1..4] = [A0..3];
+pin [5..8] = [B0..3];
+pin 9 = CYBWI; 
+pin 10 = OP0;
+pin 11 = OP1;
+pin 13 = OP2;
+
+/* Outputs pins */
+pin [17..20] = [R0..3];
+pin 21 = V;
+pin 22 = CYBWO;
+pin 23 = LE;
+
+/* Auxiliary pins */
+pin [14..16] = [C1..3];
+
+/*---------------------------*/
+/*      Arithmetic Unit      */
+/*---------------------------*/
+
+/* B and CYBWI transform */
+[BT0..3] = [B0..3] $ OP0;
+C0 = OP1 # (OP0 $ CYBWI);
+
+/* C1 to C4 */
+[C1..4] = [A0..3]&[BT0..3] # [A0..3]&[C0..3] # [BT0..3]&[C0..3];
+
+/* Result */
+[RA0..3] = [A0..3] $ [BT0..3] $ [C0..C3];
+CYBWA = C4 $ OP0;
+
+/*------------------------- */
+/*    Logic/Shift Unit      */
+/*    Logical shift left    */
+/*------------------------- */
+LSL0 = A0 & !B0 & !B1;
+LSL1 = (A1 & !B0 & !B1) # (A0 & B0 & !B1);
+LSL2 = (A2 & !B0 & !B1) # (A1 & B0 & !B1) # (A0 & !B0 & B1);
+LSL3 = (A3 & !B0 & !B1) # (A2 & B0 & !B1) # (A1 & !B0 & B1) # (A0 & B0 & B1);
+LSL4 = (A3 & B0 & !B1) # (A2 & !B0 & B1) # (A1 & B0 & B1);
+
+
+/* AND operator */
+[AND0..3] = [A0..3] & [B0..3]; 
+
+
+/* Logic result */
+[RLOGIC0..3] = ( [AND0..3] & !OP0 ) # ( [LSL0..3] & OP0 ); 
+
+
+
+/* Final result and flags */
+[R0..3] = ( [RA0..3] & !OP2) # ( [RLOGIC0..3] & OP2);
+CYBWO = (CYBWA & !OP0) # (LSL4 & OP0);
+V = (!A3 & !BT3 & R3) # (A3 & BT3 & !R3);
+
+/* Zero flag */
+Z = !(R3 # R2 # R1 # R0);
+LE = (R3 $ V) # Z;
