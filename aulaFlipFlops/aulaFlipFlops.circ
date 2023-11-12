@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project source="2.7.11" version="1.0">
+This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
+<lib desc="#Wiring" name="0"/>
+  <lib desc="#Gates" name="1"/>
+  <lib desc="#Plexers" name="2"/>
+  <lib desc="#Arithmetic" name="3"/>
+  <lib desc="#Memory" name="4"/>
+  <lib desc="#MemoryPS" name="5"/>
+  <lib desc="#I/O" name="6"/>
+  <lib desc="#Base" name="7">
+    <tool name="Text Tool">
+      <a name="text" val=""/>
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="halign" val="center"/>
+      <a name="valign" val="base"/>
+    </tool>
+  </lib>
+  <main name="main"/>
+  <options>
+    <a name="gateUndefined" val="ignore"/>
+    <a name="simlimit" val="1000"/>
+    <a name="simrand" val="0"/>
+  </options>
+  <mappings>
+    <tool lib="7" map="Button2" name="Menu Tool"/>
+    <tool lib="7" map="Button3" name="Menu Tool"/>
+    <tool lib="7" map="Ctrl Button1" name="Menu Tool"/>
+  </mappings>
+  <toolbar>
+    <tool lib="7" name="Poke Tool"/>
+    <tool lib="7" name="Edit Tool"/>
+    <tool lib="7" name="Text Tool">
+      <a name="text" val=""/>
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="halign" val="center"/>
+      <a name="valign" val="base"/>
+    </tool>
+    <sep/>
+    <tool lib="0" name="Pin">
+      <a name="tristate" val="false"/>
+    </tool>
+    <tool lib="0" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </tool>
+    <tool lib="1" name="NOT Gate"/>
+    <tool lib="1" name="AND Gate"/>
+    <tool lib="1" name="OR Gate"/>
+  </toolbar>
+  <circuit name="main">
+    <a name="circuit" val="main"/>
+    <a name="clabel" val=""/>
+    <a name="clabelup" val="east"/>
+    <a name="clabelfont" val="SansSerif plain 12"/>
+    <wire from="(480,150)" to="(540,150)"/>
+    <wire from="(350,200)" to="(540,200)"/>
+    <wire from="(140,100)" to="(290,100)"/>
+    <wire from="(140,120)" to="(290,120)"/>
+    <wire from="(140,140)" to="(290,140)"/>
+    <wire from="(140,160)" to="(290,160)"/>
+    <wire from="(350,130)" to="(400,130)"/>
+    <wire from="(500,180)" to="(500,190)"/>
+    <wire from="(400,90)" to="(400,130)"/>
+    <wire from="(350,190)" to="(500,190)"/>
+    <wire from="(400,90)" to="(540,90)"/>
+    <wire from="(480,150)" to="(480,170)"/>
+    <wire from="(430,110)" to="(540,110)"/>
+    <wire from="(350,140)" to="(430,140)"/>
+    <wire from="(350,160)" to="(460,160)"/>
+    <wire from="(460,130)" to="(540,130)"/>
+    <wire from="(430,110)" to="(430,140)"/>
+    <wire from="(460,130)" to="(460,160)"/>
+    <wire from="(350,170)" to="(480,170)"/>
+    <wire from="(500,180)" to="(540,180)"/>
+    <comp lib="5" loc="(290,160)" name="PLD">
+      <a name="Contents" val="{&quot;version&quot;:&quot;1.0&quot;,&quot;deviceId&quot;:&quot;v750c&quot;,&quot;file&quot;:&quot;aulaFlipFlops.doc&quot;,&quot;variables&quot;:{&quot;MCLK&quot;:false,&quot;AS1.dfb&quot;:false,&quot;S_O&quot;:false,&quot;AS0.dfb&quot;:false,&quot;M_ON&quot;:false,&quot;S_P&quot;:false,&quot;S_C&quot;:false,&quot;M_CLOSE&quot;:false,&quot;NS0&quot;:false,&quot;NS1&quot;:false,&quot;AS0&quot;:false,&quot;AS1&quot;:false},&quot;productTerms&quot;:[{&quot;type&quot;:&quot;X&quot;,&quot;pin&quot;:14,&quot;result&quot;:false,&quot;name&quot;:&quot;AS0.d&quot;,&quot;expression&quot;:&quot;NS0&quot;},{&quot;type&quot;:&quot;X&quot;,&quot;pin&quot;:14,&quot;name&quot;:&quot;AS0.ar&quot;,&quot;expression&quot;:&quot;0&quot;},{&quot;type&quot;:&quot;X&quot;,&quot;pin&quot;:14,&quot;name&quot;:&quot;AS0.ckmux&quot;,&quot;expression&quot;:&quot;MCLK&quot;},{&quot;type&quot;:&quot;X&quot;,&quot;pin&quot;:14,&quot;name&quot;:&quot;AS0.sp&quot;,&quot;expression&quot;:&quot;0&quot;},{&quot;type&quot;:&quot;X&quot;,&quot;pin&quot;:15,&quot;name&quot;:&quot;AS1.d&quot;,&quot;expression&quot;:&quot;NS1&quot;},{&quot;type&quot;:&quot;X&quot;,&quot;pin&quot;:15,&quot;name&quot;:&quot;AS1.ar&quot;,&quot;expression&quot;:&quot;0&quot;},{&quot;type&quot;:&quot;X&quot;,&quot;pin&quot;:15,&quot;name&quot;:&quot;AS1.ckmux&quot;,&quot;expression&quot;:&quot;MCLK&quot;},{&quot;type&quot;:&quot;X&quot;,&quot;pin&quot;:15,&quot;name&quot;:&quot;AS1.sp&quot;,&quot;expression&quot;:&quot;0&quot;},{&quot;type&quot;:&quot;V&quot;,&quot;pin&quot;:20,&quot;name&quot;:&quot;M_CLOSE&quot;,&quot;expression&quot;:&quot;AS0\u0026!AS1&quot;},{&quot;type&quot;:&quot;V&quot;,&quot;pin&quot;:21,&quot;name&quot;:&quot;M_ON&quot;,&quot;expression&quot;:&quot;AS0&quot;},{&quot;type&quot;:&quot;V&quot;,&quot;pin&quot;:17,&quot;name&quot;:&quot;NS0&quot;,&quot;expression&quot;:&quot;!AS0\u0026AS1\u0026!S_C#AS0\u0026!AS1\u0026!S_C#AS0\u0026AS1\u0026!S_O#!AS0\u0026AS1\u0026S_P#AS0\u0026!AS1\u0026S_P#!AS0\u0026!AS1\u0026!S_P&quot;},{&quot;type&quot;:&quot;V&quot;,&quot;pin&quot;:18,&quot;name&quot;:&quot;NS1&quot;,&quot;expression&quot;:&quot;!AS0\u0026AS1#AS1\u0026!S_O#AS0\u0026!AS1\u0026S_C#AS0\u0026!AS1\u0026S_P&quot;},{&quot;type&quot;:&quot;D&quot;,&quot;pin&quot;:14,&quot;name&quot;:&quot;AS0.oe&quot;,&quot;expression&quot;:&quot;1&quot;},{&quot;type&quot;:&quot;D&quot;,&quot;pin&quot;:15,&quot;name&quot;:&quot;AS1.oe&quot;,&quot;expression&quot;:&quot;1&quot;},{&quot;type&quot;:&quot;D&quot;,&quot;pin&quot;:20,&quot;name&quot;:&quot;M_CLOSE.oe&quot;,&quot;expression&quot;:&quot;1&quot;},{&quot;type&quot;:&quot;D&quot;,&quot;pin&quot;:21,&quot;name&quot;:&quot;M_ON.oe&quot;,&quot;expression&quot;:&quot;1&quot;},{&quot;type&quot;:&quot;D&quot;,&quot;pin&quot;:17,&quot;name&quot;:&quot;NS0.oe&quot;,&quot;expression&quot;:&quot;1&quot;},{&quot;type&quot;:&quot;D&quot;,&quot;pin&quot;:18,&quot;name&quot;:&quot;NS1.oe&quot;,&quot;expression&quot;:&quot;1&quot;}],&quot;projectName&quot;:&quot;aulaFlipFlops&quot;,&quot;pins&quot;:{&quot;1&quot;:{&quot;termUsed&quot;:&quot;-&quot;,&quot;type&quot;:&quot;V&quot;,&quot;name&quot;:&quot;MCLK&quot;,&quot;number&quot;:1,&quot;negated&quot;:false,&quot;extensions&quot;:{},&quot;fuseNot&quot;:false},&quot;17&quot;:{&quot;termUsed&quot;:&quot;6&quot;,&quot;type&quot;:&quot;V&quot;,&quot;name&quot;:&quot;NS0&quot;,&quot;number&quot;:17,&quot;negated&quot;:false,&quot;extensions&quot;:{&quot;oe&quot;:false},&quot;fuseNot&quot;:false},&quot;18&quot;:{&quot;termUsed&quot;:&quot;4&quot;,&quot;type&quot;:&quot;V&quot;,&quot;name&quot;:&quot;NS1&quot;,&quot;number&quot;:18,&quot;negated&quot;:false,&quot;extensions&quot;:{&quot;oe&quot;:false},&quot;fuseNot&quot;:false},&quot;3&quot;:{&quot;termUsed&quot;:&quot;-&quot;,&quot;type&quot;:&quot;V&quot;,&quot;name&quot;:&quot;S_C&quot;,&quot;number&quot;:3,&quot;negated&quot;:false,&quot;extensions&quot;:{},&quot;fuseNot&quot;:false},&quot;20&quot;:{&quot;termUsed&quot;:&quot;1&quot;,&quot;type&quot;:&quot;V&quot;,&quot;name&quot;:&quot;M_CLOSE&quot;,&quot;number&quot;:20,&quot;negated&quot;:false,&quot;extensions&quot;:{&quot;oe&quot;:false},&quot;fuseNot&quot;:false},&quot;21&quot;:{&quot;termUsed&quot;:&quot;1&quot;,&quot;type&quot;:&quot;V&quot;,&quot;name&quot;:&quot;M_ON&quot;,&quot;number&quot;:21,&quot;negated&quot;:false,&quot;extensions&quot;:{&quot;oe&quot;:false},&quot;fuseNot&quot;:false},&quot;5&quot;:{&quot;termUsed&quot;:&quot;-&quot;,&quot;type&quot;:&quot;V&quot;,&quot;name&quot;:&quot;S_O&quot;,&quot;number&quot;:5,&quot;negated&quot;:false,&quot;extensions&quot;:{},&quot;fuseNot&quot;:false},&quot;7&quot;:{&quot;termUsed&quot;:&quot;-&quot;,&quot;type&quot;:&quot;V&quot;,&quot;name&quot;:&quot;S_P&quot;,&quot;number&quot;:7,&quot;negated&quot;:false,&quot;extensions&quot;:{},&quot;fuseNot&quot;:false},&quot;14&quot;:{&quot;termUsed&quot;:&quot;-&quot;,&quot;type&quot;:&quot;V&quot;,&quot;name&quot;:&quot;AS0&quot;,&quot;number&quot;:14,&quot;negated&quot;:false,&quot;extensions&quot;:{&quot;ar&quot;:false,&quot;d&quot;:false,&quot;oe&quot;:false,&quot;ckmux&quot;:false,&quot;sp&quot;:false},&quot;fuseNot&quot;:false},&quot;15&quot;:{&quot;termUsed&quot;:&quot;-&quot;,&quot;type&quot;:&quot;V&quot;,&quot;name&quot;:&quot;AS1&quot;,&quot;number&quot;:15,&quot;negated&quot;:false,&quot;extensions&quot;:{&quot;ar&quot;:false,&quot;d&quot;:false,&quot;oe&quot;:false,&quot;ckmux&quot;:false,&quot;sp&quot;:false},&quot;fuseNot&quot;:false}}}"/>
+    </comp>
+    <comp lib="0" loc="(140,100)" name="Clock"/>
+    <comp lib="0" loc="(540,130)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="NS1"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(540,90)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="M_ON"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(140,120)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="S_C"/>
+    </comp>
+    <comp lib="0" loc="(140,140)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="S_O"/>
+    </comp>
+    <comp lib="0" loc="(540,150)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="NS0"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(140,160)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="S_P"/>
+    </comp>
+    <comp lib="0" loc="(540,200)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="AS0"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(540,180)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="AS1"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(540,110)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="M_CLOSE"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+  </circuit>
+</project>
