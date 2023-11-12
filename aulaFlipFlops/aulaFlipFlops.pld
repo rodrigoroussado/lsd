@@ -1,0 +1,65 @@
+Name     aulaFlipFlops ; 
+PartNo   U1 ; 
+Date     10/11/2023 ;
+Revision 01 ;
+Designer Engineer ;
+Company  None ;
+Assembly None ; 
+Location ISEL ;
+Device   v750c ;
+
+/*Pin Definition */
+
+	/*Entradas */
+	PIN 1 = MCLK;
+	PIN 3 = S_C;
+	PIN 5 = S_O;
+	PIN 7 = S_P;
+	
+	
+	/*Saidas*/
+	
+	/*Estado atual */
+	PIN 14 = AS0;
+	PIN 15 = AS1;
+	
+	
+	/*Estado seguinte */
+	PIN 17 = NS0;
+	PIN 18 = NS1;
+	
+	PIN 20 = M_CLOSE;
+	PIN 21 = M_ON;
+
+
+
+
+
+
+/*Flip-Flop D0 */
+NS0 = (!AS1 & !AS0 & !S_P) # (!AS1 & AS0 & (S_P # !S_C) ) # (AS1 & !AS0 & (S_P # !S_C) ) #(AS1 & AS0 & !S_O); 
+
+
+/*Flip-Flop D1 */
+NS1 = (!AS1 & AS0 & (S_P # S_C) ) # (AS1 & !AS0) # (AS1 & AS0 & !S_O);
+
+
+/*Estado atual */
+AS0.d = NS0;
+AS1.d = NS1;
+
+AS0.ckmux = MCLK;
+AS1.ckmux = MCLK;
+
+AS0.sp = 'b'0;
+AS1.sp = 'b'0;
+
+AS0.ar = 'b'0;
+AS1.ar = 'b'0;
+
+
+
+/*Acoes no motor */
+M_ON = AS0;
+M_CLOSE = !AS1 & AS0;
+
