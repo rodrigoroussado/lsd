@@ -1,0 +1,79 @@
+Name     portaROM ; 
+PartNo   U1 ; 
+Date     15/11/2023 ;
+Revision 01 ;
+Designer Engineer ;
+Company  None ;
+Assembly None ; 
+Location  ;
+Device   v750c ;
+
+
+/*Entradas*/
+
+PIN 1 = CLK;
+
+PIN 2 = S_P;
+PIN 3 = S_C;
+PIN 4 = S_O;
+
+
+
+
+/*Outputs*/
+
+/*Current State*/
+PIN 14 = Q0;
+PIN 15 = Q1;
+
+
+/*Next State*/
+PIN 17 = Q0D;
+PIN 18 = Q1D;
+
+
+
+PIN 20 = M_ON;
+PIN 21 = M_CLOSE;
+
+
+A0 = S_O;
+A1 = S_C;
+A2 = S_P;
+A3 = Q0;
+A4 = Q1;
+
+/*ROM*/
+
+FIELD address = [A4..0];
+FIELD data = [Q1D, Q0D, M_ON, M_CLOSE];
+
+TABLE address => data{
+	
+	/*State - Open*/
+	'b'000xx => 'b'010x;
+	'b'001xx => 'b'000x;
+	
+	/*State - Closing*/
+	'b'0100x => 'b'0111;
+	'b'0101x => 'b'1011;
+	'b'011xx => 'b'1111;
+	
+	/*State - Closed*/
+	'b'100xx => 'b'100x;
+	'b'101xx => 'b'110x;
+	
+	/*State - Opening*/
+	'b'11xx0 => 'b'1110;
+	'b'11xx1 => 'b'0010;
+	
+	
+}
+
+
+/*Memory*/
+
+[Q0..1].d = [Q0D,Q1D];
+[Q0..1].ar = 'b'0;
+[Q0..1].sp = 'b'0;
+[Q0..1].ckmux = CLK;
