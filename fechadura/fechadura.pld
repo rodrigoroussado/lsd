@@ -1,0 +1,104 @@
+Name     fechadura-G1-LT13D ; 
+PartNo   U1 ; 
+Date     23/11/2023 ;
+Revision 01 ;
+Designer Grupo 1 - LT13D ;
+Company  None ;
+Assembly None ; 
+Location  ;
+Device   v750c ;
+
+
+
+/*INPUT PINS*/
+PIN 1 = MCLK;
+PIN 6 = OSC_1HZ;
+PIN 11 = BUTTON;
+
+/*OUTPUTS PINS*/
+PIN 14 = LAMP;
+
+PIN 15 = UNLOCK;
+
+PIN 16 = TIME0;
+PIN 17 = TIME1;
+PIN 18 = TIME2;
+
+PIN 19 = CODE0;
+PIN 20 = CODE1;
+
+PIN 21 = CS0;
+PIN 22 = CS1;
+PIN 23 = CS2;
+
+/*INTERNAL SIGNALS*/
+TIME_CODE = TIME2 & !TIME1 & !TIME0;
+TIME_UNLOCK = TIME2 & TIME1 & !TIME0;
+
+RST_CODE = !CS0 & !CS1 & !CS2;
+RST_TIME = CS0 & !CS1 & !CS2;
+
+
+/*COMPARATOR*/
+/*DEFINICAO DO N DE VEZES QUE BUTTON TEM DE SER PRESSIONADO - 3 vezes*/
+MATCH_CODE = CODE0 & CODE1;
+
+
+/*NEXT STATE*/
+
+
+	/*FLIP-FLOP D0*/
+	NS0 = (!CS1 & !CS2 & !BUTTON) # (CS0 & CS1 & !TIME_UNLOCK) # (!CS0 & CS1 & TIME_CODE & MATCH_CODE);
+
+	/*FLIP-FLOP D1*/
+	NS1 = (CS0 & !CS1 & BUTTON) # (CS0 & CS1 & !TIME_UNLOCK) # (!CS0 & CS1 & (!TIME_CODE # MATCH_CODE));
+
+	/*FLIP-FLOP D2*/
+	NS2 = (CS2 & BUTTON) # (CS0 & CS1 & TIME_UNLOCK) # (!CS0 & CS1 & TIME_CODE & !MATCH_CODE);
+	
+	
+/*CURRENT STATE*/
+CS0.d = NS0;
+CS1.d = NS1;
+CS2.d = NS2;
+
+CS0.ckmux = MCLK;
+CS1.ckmux = MCLK;
+CS2.ckmux = MCLK;
+
+CS0.sp = 'b'0;
+CS1.sp = 'b'0;
+CS2.sp = 'b'0;
+
+CS0.ar = 'b'0;
+CS1.ar = 'b'0;
+CS2.ar = 'b'0;
+
+
+/*TIME COUNTER*/
+[TIME0..2].ar = RST_TIME;
+[TIME0..2].ck = OSC_1HZ;
+
+TIME0.t = 'b'1;
+TIME1.t = TIME0;
+TIME2.t = TIME0 & TIME1;
+
+TIME0.sp = 'b'0;
+TIME1.sp = 'b'0;
+TIME2.sp = 'b'0;
+
+
+/*BUTTON COUNTER*/
+[CODE0..1].ar = RST_CODE;
+[CODE0..1].ck = BUTTON;
+
+CODE0.t = 'b'1;
+CODE1.t = CODE0;
+
+CODE0.sp = 'b'0;
+CODE1.sp = 'b'0;
+
+
+/*OUTPUTS*/
+LAMP = !CS0 & CS1 & !CS2;
+UNLOCK = CS0 & CS1 & !CS2;
