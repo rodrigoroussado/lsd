@@ -1,1 +1,52 @@
+Name     LEETC_LSD_Trabalho_3_2023_24 ; 
+PartNo   U1 ; 
+Date     24/11/2023 ;
+Revision 01 ;
+Designer G01 - LT13D ;
+Company  None ;
+Assembly None ; 
+Location  ;
+Device   v750c ;
+
+
+/*INPUT PINS*/
+PIN 1 = MCLK;
+PIN 3 = BUTTON;
+
+PIN 5 = OSC_1HZ;
+
+
+/*OUTPUT PINS*/
+PIN 14 = LAMP;
+
+PIN [16..18] = [CS0, CS1, CS2];
+
+[CS0, CS1, CS2].sp = 'b'0;
+[CS0, CS1, CS2].ar = 'b'0;
+[CS0, CS1, CS2].ckmux = MCLK;
+
+
+sequenced [CS0, CS1, CS2]{
+	
+	present 'b'000
+		if BUTTON next 'b'000;
+		default next 'b'001;
+	
+	
+	present 'b'001
+		if !BUTTON next 'b'001;
+		default next 'b'010;
+		out RST_TIME;
+		
+		
+	present 'b'010
+		if !TIME_WINDOW next 'b'010
+		if
+	
+}
+
+
+
+
+
 
