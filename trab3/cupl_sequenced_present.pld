@@ -12,25 +12,29 @@ Device   v750c ;
 /*INPUT PINS*/
 PIN 1 = MCLK;
 PIN 3 = BUTTON;
-
 PIN 5 = OSC_1HZ;
 
 
 /*OUTPUT PINS*/
 PIN 14 = LAMP;
-
 PIN [16..18] = [CS0, CS1, CS2];
+PIN [19..20] = [BTN_COUNT0..1];
+PIN [21..23] = [TIME0..2];
 
+
+/*ESTADO CORRENTE*/
 [CS0, CS1, CS2].sp = 'b'0;
 [CS0, CS1, CS2].ar = 'b'0;
 [CS0, CS1, CS2].ckmux = MCLK;
 
 
+/*CONTROLO*/
 sequenced [CS0, CS1, CS2]{
 	
 	present 'b'000
 		if BUTTON next 'b'000;
 		default next 'b'001;
+		out RST_BUTTON;
 	
 	
 	present 'b'001
@@ -40,13 +44,66 @@ sequenced [CS0, CS1, CS2]{
 		
 		
 	present 'b'010
-		if !TIME_WINDOW next 'b'010
-		if
+		if !TIME_WINDOW next 'b'010;
+		if TIME_WINDOW & LAMP_FOREVER next 'b'100;
+		default next 'b'011;
+		out LAMP;
+		
+		
+	present 'b'011
+		if !TIME_LAMP_ON next 'b'011;
+		if TIME_LAMP_ON & BUTTON next 'b'110;
+		default next 'b'000;
+		out LAMP;
+	
+	
+	present 'b'100
+		if BUTTON next 'b'100;
+		default next 'b'101;
+		out LAMP;
+	
+	
+	present 'b'101
+		if !BUTTON next 'b'101;
+		default next 'b'110;
+		out LAMP;
+	
+	
+	present 'b'110
+		if BUTTON next 'b'110;
+		default next 'b'000;
+	
 	
 }
 
 
+/*BUTTON COUNTER*/
+[BTN_COUNT0..1].ar = RST_BUTTON;
+[BTN_COUNT0..1].ck = BUTTON;
+
+BTN_COUNT0.t = 'b'1;
+BTN_COUNT1.t = BTN_COUNT0;
+
+BTN_COUNT0.sp = 'b'0;
+BTN_COUNT1.sp = 'b'0;
 
 
+/*TIME COUNTER*/
+[TIME0..2].ar = RST_TIME;
+[TIME0..2].ck = OSC_1HZ;
 
+TIME0.t = 'b'1;
+TIME1.t = TIME0;
+TIME2.t = TIME0 & TIME1;
+
+TIME0.sp = 'b'0;
+TIME1.sp = 'b'0;
+TIME2.sp = 'b'0;
+
+
+/*COUNTERS OUTPUT*/
+TIME_WINDOW = !TIME0 & !TIME1 & TIME2;
+TIME_LAMP_ON = TIME0 & TIME1 & TIME2;
+
+LAMP_FOREVER = BTN_COUNT0 & BTN_COUNT1;
 
