@@ -10,8 +10,6 @@ Device   v750c ;
 
 
 /*INPUT PINS*/
-
-/*CONTROL*/
 PIN 1 = MCLK;
 PIN 2 = TIME_LAMP_ON;
 PIN 3 = TIME_WINDOW;
@@ -19,53 +17,16 @@ PIN 4 = LAMP_FOREVER;
 PIN 5 = BUTTON;
 
 
-/*PIN 11 = OSC_1HZ;*/
-
-
-
 /*OUTPUT PINS*/
 PIN 14 = LAMP;
 PIN 15 = RST_BUTTON;
 PIN 16 = RST_TIME;
-
-/*PIN [15..16] = [BTN_COUNT0..1];
-PIN [17..19] = [TIME0..2];*/
-
 PIN [21..23] = [CS0..2];
 
 
 /*INTERNAL SIGNALS*/
 RST_TIME = CS0 & !CS1 & !CS2;
 RST_BUTTON = !CS0 & !CS1 & !CS2;
-
-/*TIME_WINDOW = !TIME0 & !TIME1 & TIME2;
-TIME_LAMP_ON = TIME0 & TIME1 & TIME2;
-
-LAMP_FOREVER = BTN_COUNT0 & BTN_COUNT1;*/
-
-
-/*BUTTON COUNTER*/
-/*[BTN_COUNT0..1].ar = RST_BUTTON;
-[BTN_COUNT0..1].ck = BUTTON;
-
-BTN_COUNT0.t = 'b'1;
-BTN_COUNT1.t = BTN_COUNT0;
-
-BTN_COUNT0.sp = 'b'0;
-BTN_COUNT1.sp = 'b'0;*/
-
-
-/*TIME COUNTER*/
-/*[TIME0..2].ar = RST_TIME;
-[TIME0..2].ck = OSC_1HZ;
-
-TIME0.t = 'b'1;
-TIME1.t = TIME0;
-TIME2.t = TIME0 & TIME1;
-
-TIME0.sp = 'b'0;
-TIME1.sp = 'b'0;
-TIME2.sp = 'b'0;*/
 
 
 /*NEXT STATE*/
